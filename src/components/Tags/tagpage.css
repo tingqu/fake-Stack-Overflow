@@ -1,0 +1,16 @@
+.tags-page{
+    height: 88%;
+    padding-top: 5%;
+}
+
+.tag_box{
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+.tags{
+    float: left;
+    position: relative;
+    width: 30%;
+}

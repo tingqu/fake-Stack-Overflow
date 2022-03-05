@@ -1,0 +1,55 @@
+import React from "react";
+import "./singleQ.css";
+
+function SingleQ({ singleQ, model }) {
+  const tagLst  = model.getTags()
+  const tags = singleQ.tagIds 
+  const ans = singleQ.answers.length > 1 ? "Answers " : "Answer"
+  const views = singleQ.views > 1 ? "Views" : "View"
+  return (
+    <div className="question-list">
+      <div className="c1">
+        <span className="view" id="numOfView">
+          {singleQ.views} {views}
+        </span>
+        <span className="answer" id="numOfAns">
+          {singleQ.answers.length} {ans}
+        </span>
+      </div>
+      <div className="c2">
+        <span className="q-title">
+          <a
+            href="#"
+            id="question-title"
+            onClick={() => {
+              // show the answer page
+            }}
+          >
+            {singleQ.title}
+          </a>
+          <div className="question-tags">
+            {tags.map((tag, key)=>{
+              const tagIndex = parseInt(tag.slice(-1)) -1
+              console.log(tagIndex)
+              const tagName = tagLst[tagIndex].name
+              return <div className="tag-child" key ={key}>{tagName}</div>
+            })}
+          </div>
+        </span>
+      </div>
+      <div className="c3">
+        <li className="c3-item user-name-box">
+          Asked By <span className="user-name">{singleQ.askedBy}</span>
+        </li>
+        <li className="c3-item question-date-box">
+          On <span className="question-date">{singleQ.askedOn}</span>
+        </li>
+        <li className="c3-item question-time-box">
+          At <span className="question-time">{singleQ.askedAt}</span>
+        </li>
+      </div>
+    </div>
+  );
+}
+
+export default SingleQ;

@@ -1,0 +1,28 @@
+.sub-tag-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+.sub-tag-box li{
+    width: fit-content;
+    text-align: center;
+    border: 1px solid black;
+    padding: 1% 2%;
+    display: inline-block;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 7%;
+  }
+  
+  .sub-tag-box a{
+    color: #0281E8;
+    text-decoration: underline;
+    font-size: 200%;
+  }
+  
+  .sub-tag-box p{
+    margin-top: 15%;
+    font-size: 120%;
+  }
+  

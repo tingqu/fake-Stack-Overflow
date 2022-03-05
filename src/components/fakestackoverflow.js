@@ -1,8 +1,17 @@
 import React from 'react';
 import Model from '../models/model.js';
+import Header from './Header/Header.js';
 
-export default class FakeStackOverflow extends React.Component {
+// Create the new object for model
+export default class FakeStackOverflow extends React.Component{
   render() {
-    return (<h1> Change Me </h1>)
+    // the new model
+    const model = new Model()
+    // The state that control the appearance of each page 
+    return (
+      <>
+      <Header  model={model}/>
+      </>
+    )
   }
 }

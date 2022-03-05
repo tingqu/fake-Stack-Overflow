@@ -85,4 +85,111 @@ export default class Model {
   }
 
   // add relevant methods here.
+  
+  // Get Questions
+  getQuestions(){
+    for(var i = 0; i < this.data.questions.length; i++){ 
+      this.sort(this.data.questions[i].answers,this.data.questions[i].answers.length)
+    }
+    return this.data.questions
+  }
+
+  // add Questions here
+  addQuestions(questionObject){
+    this.sort(this.data.questions, this.data.questions.length)
+    const len = this.data.questions.length + 1;
+    const Qid = "q" + len.toString()
+    questionObject['qid'] = Qid
+    //this.data.questions.push(questionObject)
+    console.log("Question Added")
+
+    var on = questionObject.askedOn;
+    var at = questionObject.askedAt;
+    for(var i = 0; i < len; i ++){
+      let date = this.data.questions[i].askedOn
+      if(date > on){
+        this.data.questions.splice(i,0,questionObject)
+        break
+      }else if (date == on){
+         let atTime = this.data.questions[i].askedAt
+         if(atTime > at ){
+            this.data.questions.splice(i,0, questionObject)
+         }
+      }
+    }
+  }
+
+  getTags(){
+    return this.data.tags
+  }
+
+  addTags(Tags){
+    this.data.tags.push(Tags)
+  }
+
+  getAnswers(){
+    this.sort(this.data.answers, this.data.answers.length)
+    return this.data.answers
+  }
+
+  addAnswers(ans){
+    const len = this.data.answers.length + 1 
+    const Aid = "a"+ len.toString()
+    ans['aid'] = Aid
+    this.data.answers.push(ans)
+  }
+
+  tagExist(tag){
+    console.log('tags: ' + tag)
+    for(var i = 0; i < this.data.tags.length; i++){
+      if(this.data.tags[i].name === tag){
+        return this.data.tags[i].tid
+      }
+      return  " "
+    }
+  }
+
+  tagsLength(){
+    return this.data.tags.length + 1
+  }
+
+  getIDsNum(){
+    var len = this.data.tags.length
+    var idDict = new Array(len).fill(0)
+    for(var i = 0; i < this.data.questions.length; i++){
+      const tagLst = this.data.questions[i].tagIds
+      for(var j = 0; j < tagLst.length; j++){
+        idDict[parseInt(tagLst[j].substring(1)) -1] = idDict[parseInt(tagLst[j].substring(1))-1] + 1
+      }
+    }
+    return idDict
+  }
+
+  appendAnswer(index, ansID){
+    var changed = this.data.questions[index]
+    var newAns =  this.data.answers[ansID]
+    changed.answers.unshift(newAns.aid)
+    
+  }
+
+  increaseView(index){
+    this.data.questions[index].views =  this.data.questions[index].views + 1
+  }
+
+  swap(arr, point1, point2){
+    var temp = arr[point1]
+    arr[ point1] = arr[point2]
+    arr[point2] = temp
+  }
+
+  sort(arr, len){
+    var i ,j
+    for(i = 0; i < len -1; i ++){
+      for(j = 0 ; j < len- i - 1; j++){
+        if(arr[j] < arr[j + 1]){
+          this.swap(arr, j, j+1)
+        }
+      }
+    }
+  }
 }

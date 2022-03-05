@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import FakeStackOverflow from './components/fakestackoverflow.js';
 
+
 ReactDOM.render(
-  <FakeStackOverflow />,
+  < FakeStackOverflow/>,
   document.getElementById('root')
 );
