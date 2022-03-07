@@ -1,76 +1,81 @@
-.ask-a-question{
-    padding: 0 5%;
-    height: 20%;
-    display: none;
-  }
-  
-  .error-ask{
-    height: fit-content;
-    text-align: center;
-    margin: 3% 0;
-  }
-  
-  .error-ask p{
-    color: red;
-    font-size: 200%;
-  }
-  
-  .ask-content{
-    margin-top: 5%;
-  }
-  
-  .ask-content div{
-    margin-bottom: 5%;
-  }
-  
-  .ask-content h1{
-    font-weight: bold;
-    margin-bottom: 2%;
-  }
-  
-  .ask-content p{
-    margin-bottom: 2%;
-    font-style: italic;
-  }
-  
-  .ask-a-question input {
-    height: 20%;
-    width: 100%;
-    padding: 2% 0;
-  }
-  
-  #ask-question-title{
-    height: 50%;
-  }
-  
-  #ask-question-text{
-    height: 80%;
-    width: 100%;
-    padding: 2% 0;
-    font-size: 200%;
-    border: 2px solid black ;
-  }
-  
-  #ask-tags{
-    height: 40%;
-  }
-  
-  #post-question-button{
-    padding: auto;
-    color: white;
-    font-weight: bolder;
-    border-radius: 8%;
-    background-color: #165A92;
-    border: 2px solid black;
-    font-size: 200%;
-    width: fit-content;
-    height: 65%;
-    margin-bottom: 5%;
-    padding: 0% 2%;
-  }
-  
-  #ask-username{
-    background-color: white;
-    height: 5%;
-  }
-  
+.ask-a-question {
+  padding: 0 5%;
+  height: 20%;
+}
+
+.error-ask {
+  height: fit-content;
+  text-align: center;
+  margin: 3% 0;
+}
+
+.error-ask p {
+  color: red;
+  font-size: 200%;
+}
+
+.ask-content {
+  margin-top: 5%;
+}
+
+.ask-content div {
+  margin-bottom: 5%;
+}
+
+.ask-content h1 {
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+.ask-content p {
+  margin-bottom: 2%;
+  font-style: italic;
+}
+
+.ask-a-question input {
+  height: 20%;
+  width: 100%;
+  padding: 2% 0;
+}
+
+#ask-question-title {
+  height: 50%;
+  padding-left: 1%;
+}
+
+#ask-question-text {
+  height: 250px;
+  width: 100%;
+  padding: 2% 1%;
+  font-size: 200%;
+  border: 2px solid black;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  resize: none;
+}
+
+#ask-tags {
+  height: 40%;
+  padding-left: 1%;
+}
+
+#post-question-button {
+  padding: auto;
+  color: white;
+  font-weight: bolder;
+  border-radius: 8px;
+  background-color: #165a92;
+  border: 2px solid black;
+  font-size: 200%;
+  width: fit-content;
+  height: 65%;
+  margin-bottom: 5%;
+  padding: 2% 2%;
+}
+
+#ask-username {
+  background-color: white;
+  height: 5%;
+  padding-left: 1%;
+}

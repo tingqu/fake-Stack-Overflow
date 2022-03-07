@@ -1,31 +1,94 @@
-import React from 'react'
-import './answer.css'
-import SingleAnswer from './SingleAnswer'
+import React from "react";
+import "./answer.css";
+import SingleAnswer from "./SingleAnswer";
+import Nav from "../Nav/Nav";
 
+function Answer({ model, Qtitle, onChange, showAddAnsPage }) {
+  // find the index question
+  const QLst = model.getQuestions();
+  const modelAnsLst = model.getAnswers();
+  var answerLst = [];
+  var index = 0;
 
-function Answer() {
+  // get the index of question
+  for (var i = 0; i < QLst.length; i++) {
+    if (QLst[i].title == Qtitle) {
+      answerLst = QLst[i].answers;
+      index = i;
+      break;
+    }
+  }
+
+  var len = answerLst.length;
+  // set up the nav
+  const number = len > 1 ? len + " Answers" : len + " Answer";
+
+  //increase the views
+  model.increaseView(index);
+
   return (
     <>
-    <div className="question-section" id = " question-section">
-        <div className="answer-views" id = "answer-views">11 Views</div>
-        <div className="answered-question" id= "answered-question">Dean’s wife was in one of her moods, she had a lot of moods, that girl, and she burst into the party baited for bear. Dean tried to head her off but she went straight over to this good-looking kid in the corner, came right up to him, put her hand on his chest, inside his shirt, and looked up. “Guess what,” she smiled, “it’s your lucky night.” The kid smiled back and asked why. “Because I’m the most beautiful woman you’re ever going to sleep with,” she said, and she would have been too but his mother was there.</div>
-        <div className="question-info" id = 'answer-user -info' >
+      <Nav title={Qtitle} number={number} onChange={onChange} />
+      <div className="question-section" id=" question-section">
+        <div className="answer-views" id="answer-views">
+          {QLst[index].views > 1
+            ? QLst[index].views + " Views"
+            : QLst[index].views + " View"}
+        </div>
+        <div className="answered-question" id="answered-question">
+          {QLst[index].text}
+        </div>
+        <div className="question-info" id="answer-user -info">
           <div>
-          <li className="c3-item user-name-box">Asked By <span className="user-name" id="user-name">Joji John</span></li>
-          <li className="c3-item question-date-box">On <span className="question-date" id="question-date"> Jan 19, 2022</span></li>
-          <li className="c3-item question-time-box"> At <span className="question-time" id="question-time"> 21:25</span></li>
+            <li className="c3-item user-name-box">
+              Asked By{" "}
+              <span className="user-name" id="user-name">
+                {QLst[index].askedBy}
+              </span>
+            </li>
+            <li className="c3-item question-date-box">
+              On{" "}
+              <span className="question-date" id="question-date">
+                {" "}
+                {QLst[index].askedOn}
+              </span>
+            </li>
+            <li className="c3-item question-time-box">
+              {" "}
+              At{" "}
+              <span className="question-time" id="question-time">
+                {" "}
+                {QLst[index].askedAt}
+              </span>
+            </li>
           </div>
         </div>
-    </div>
+      </div>
 
-    {/* Single answer */}
-    < SingleAnswer/>
-    {/* Add Answer Button */}
-    <div className="Answer-question" id = 'Answer_question'>
-        <button id="Answer-question-btn">Answer Question</button>
+      {/* Single answer */}
+      {answerLst.map((singleAns, key) => {
+        return (
+          <SingleAnswer
+            singleAns={singleAns}
+            key={key}
+            modelAnsLst={modelAnsLst}
+          />
+        );
+      })}
+
+      {/* Add Answer Button */}
+      <div className="Answer-question" id="Answer_question">
+        <button
+          id="Answer-question-btn"
+          onClick={() => {
+            showAddAnsPage();
+          }}
+        >
+          Answer Question
+        </button>
       </div>
     </>
-  )
+  );
 }
 
-export default Answer
+export default Answer;

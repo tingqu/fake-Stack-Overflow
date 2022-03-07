@@ -1,11 +1,11 @@
 import React from "react";
 import "./singleQ.css";
 
-function SingleQ({ singleQ, model }) {
-  const tagLst  = model.getTags()
-  const tags = singleQ.tagIds 
-  const ans = singleQ.answers.length > 1 ? "Answers " : "Answer"
-  const views = singleQ.views > 1 ? "Views" : "View"
+function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
+  const tagLst = model.getTags();
+  const tags = singleQ.tagIds;
+  const ans = singleQ.answers.length > 1 ? "Answers " : "Answer";
+  const views = singleQ.views > 1 ? "Views" : "View";
   return (
     <div className="question-list">
       <div className="c1">
@@ -22,17 +22,21 @@ function SingleQ({ singleQ, model }) {
             href="#"
             id="question-title"
             onClick={() => {
-              // show the answer page
+              showAnswers();
+              getAnsTitle(singleQ.title);
             }}
           >
             {singleQ.title}
           </a>
           <div className="question-tags">
-            {tags.map((tag, key)=>{
-              const tagIndex = parseInt(tag.slice(-1)) -1
-              console.log(tagIndex)
-              const tagName = tagLst[tagIndex].name
-              return <div className="tag-child" key ={key}>{tagName}</div>
+            {tags.map((tag, key) => {
+              const tagIndex = parseInt(tag.slice(-1)) - 1;
+              const tagName = tagLst[tagIndex].name;
+              return (
+                <div className="tag-child" key={key}>
+                  {tagName}
+                </div>
+              );
             })}
           </div>
         </span>

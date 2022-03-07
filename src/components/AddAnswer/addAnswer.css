@@ -1,51 +1,50 @@
-.addAnswer{
-    display: none;
-    margin:3% 3%;
-  }
-  
-  .addAnswer div{
-    font-size: 300%;
-    font-weight: 100;
-  }
-  
-  .addAnswer textarea{
-    width: 100%;
-    padding: 1% 1%;
-    margin-top: 2%;
-    margin-bottom: 7%;
-    font-size: large;
-  }
-  
-  .addAnswer p{
-    width: 100%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-  }
-  
-  .addAnswer input{
-     width: 100%;
-     margin-bottom: 5%;
-     height: 8%;
-     padding-left: 1%;
-     border: 1px solid black;
-  }
-  
-  .addAnswer button{
-    background-color:#165A92;
-    color:white;
-    font-size: 250%;
-    font-weight: bolder;
-    border: 2px solid black;
-    border-radius: 10%;
-    padding: 3% 3%;
-  }
-  
-  .addAnswer .error-ask{
-    height: fit-content;
-    font-size: 100%;
-    margin: 2% 2%;
-  }
-  
-  textarea{
-    resize: none;
-  }
+.addAnswer {
+  margin: 3% 3%;
+}
+
+.addAnswer div {
+  font-size: 300%;
+  font-weight: 100;
+}
+
+.addAnswer textarea {
+  width: 100%;
+  padding: 1% 1%;
+  margin-top: 2%;
+  margin-bottom: 7%;
+  font-size: large;
+}
+
+.addAnswer p {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.addAnswer input {
+  width: 100%;
+  margin-bottom: 5%;
+  height: 8%;
+  padding-left: 1%;
+  border: 1px solid black;
+}
+
+.addAnswer button {
+  background-color: #165a92;
+  color: white;
+  font-size: 250%;
+  font-weight: bolder;
+  border: 2px solid black;
+  border-radius: 10%;
+  padding: 3% 3%;
+}
+
+.addAnswer .error-ask {
+  height: fit-content;
+  font-size: 100%;
+  margin: 2% 2%;
+}
+
+textarea {
+  resize: none;
+}
