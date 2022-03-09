@@ -6,6 +6,8 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
   const tags = singleQ.tagIds;
   const ans = singleQ.answers.length > 1 ? "Answers " : "Answer";
   const views = singleQ.views > 1 ? "Views" : "View";
+  console.log(tags);
+  const emptyTag = tags.length == 0 ? true : false;
   return (
     <div className="question-list">
       <div className="c1">
@@ -29,15 +31,17 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
             {singleQ.title}
           </a>
           <div className="question-tags">
-            {tags.map((tag, key) => {
-              const tagIndex = parseInt(tag.slice(1)) - 1;
-              const tagName = tagLst[tagIndex].name;
-              return (
-                <div className="tag-child" key={key}>
-                  {tagName}
-                </div>
-              );
-            })}
+            {emptyTag
+              ? null
+              : tags.map((tag, key) => {
+                  const tagIndex = parseInt(tag.slice(1)) - 1;
+                  const tagName = tagLst[tagIndex].name;
+                  return (
+                    <div className="tag-child" key={key}>
+                      {tagName}
+                    </div>
+                  );
+                })}
           </div>
         </span>
       </div>

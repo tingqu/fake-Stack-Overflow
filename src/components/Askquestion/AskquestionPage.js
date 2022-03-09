@@ -57,31 +57,31 @@ function AskquestionPage({ model, showQuestion }) {
       setError((error) => [...error, error_message[2]]);
     }
 
-    // find the tag list
-    let questionTags = tags.trim().split(" ");
-
-    let lowerCase = questionTags.map((tag) => tag.toLowerCase());
-
-    questionTags = new Set(lowerCase);
-
-    questionTags = Array.from(questionTags);
-
     var questionTagsList = [];
 
-    for (var i = 0; i < questionTags.length; i++) {
-      const testing = model.tagExist(questionTags[i]);
-      if (testing == " ") {
-        const newTag = {
-          tid: "t" + model.tagsLength().toString(),
-          name: questionTags[i],
-        };
+    // find the tag list
+    if (tags.trim().length == 0) {
+      questionTagsList = [];
+    } else {
+      let questionTags = tags.trim().split(" ");
+      for (var i = 0; i < questionTags.length; i++) {
+        const testing = model.tagExist(questionTags[i]);
+        if (testing == " ") {
+          const newTag = {
+            tid: "t" + model.tagsLength().toString(),
+            name: questionTags[i],
+          };
 
-        model.addTags(newTag);
-        console.log(newTag);
-        questionTagsList.push(newTag.tid);
-      } else {
-        questionTagsList.push(model.tagExist(questionTags[i]));
+          model.addTags(newTag);
+          console.log(newTag);
+          console.log(model.getTags());
+          questionTagsList.push(newTag.tid);
+        } else {
+          questionTagsList.push(model.tagExist(questionTags[i]));
+        }
       }
+      questionTagsList = new Set(questionTagsList);
+      questionTagsList = Array.from(questionTagsList);
     }
     // Error in userName
     if (userName.length > 15) {

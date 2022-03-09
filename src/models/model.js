@@ -22,7 +22,7 @@ export default class Model {
           askedBy: "saltyPeter",
           askedOn: "Jan 01, 2022",
           askedAt: "01:15",
-          answers: ["a3", "a4", "a5"],
+          answers: ["a4", "a5", "a3"],
           views: 121,
         },
       ],
@@ -125,7 +125,6 @@ export default class Model {
 
   tagExist(tag) {
     for (var i = 0; i < this.data.tags.length; i++) {
-      console.log(this.data.tags[i].name);
       if (this.data.tags[i].name.toUpperCase() == tag.toUpperCase()) {
         return this.data.tags[i].tid;
       }
