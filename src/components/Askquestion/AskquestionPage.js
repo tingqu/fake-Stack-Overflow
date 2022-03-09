@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./askQuestion.css";
 
-function AskquestionPage({ model, showQuestion, addQuestion }) {
+function AskquestionPage({ model, showQuestion }) {
   // add error statement
   const error_message = [
     "Title is too long",
@@ -11,9 +11,10 @@ function AskquestionPage({ model, showQuestion, addQuestion }) {
     "Username can't be empty",
   ];
 
-  let Question = "";
+  let question = "";
   let flag = false;
   const [error, setError] = useState([]);
+  const [clear, setClear] = useState(false);
 
   // Create the new Question
   const getValue = (event) => {
@@ -44,20 +45,20 @@ function AskquestionPage({ model, showQuestion, addQuestion }) {
     const userName = event.target.ask_username.value;
 
     if (title.trim().length > 100) {
-      error.push(error_message[0]);
+      setError((error) => [...error, error_message[0]]);
       flag = true;
     } else if (title.trim().length === 0) {
       flag = true;
-      error.push(error_message[1]);
+      setError((error) => [...error, error_message[1]]);
     }
 
     if (Text.trim().length === 0) {
       flag = true;
-      error.push(error_message[2]);
+      setError((error) => [...error, error_message[2]]);
     }
 
     // find the tag list
-    let questionTags = tags.split(" ");
+    let questionTags = tags.trim().split(" ");
 
     let lowerCase = questionTags.map((tag) => tag.toLowerCase());
 
@@ -76,19 +77,19 @@ function AskquestionPage({ model, showQuestion, addQuestion }) {
         };
 
         model.addTags(newTag);
+        console.log(newTag);
         questionTagsList.push(newTag.tid);
       } else {
         questionTagsList.push(model.tagExist(questionTags[i]));
       }
     }
-
     // Error in userName
     if (userName.length > 15) {
       flag = true;
-      setError([...error, error_message[3]]);
+      setError((error) => [...error, error_message[3]]);
     } else if (userName.trim().length === 0) {
       flag = true;
-      setError([...error, error_message[4]]);
+      setError((error) => [...error, error_message[4]]);
     }
 
     //Create the new Question
@@ -103,23 +104,22 @@ function AskquestionPage({ model, showQuestion, addQuestion }) {
       views: 0,
     };
 
-    Question = newQuestion;
+    question = newQuestion;
   };
 
   const handleSubmit = (event) => {
+    if (clear) {
+      setError([]);
+    }
     getValue(event);
+    console.log(question);
     if (!flag) {
-      addQuestion(Question);
+      model.addQuestions(question);
       showQuestion();
     }
     flag = false;
+    setClear(true);
   };
-
-  // useEffect(() => {
-  //   if (error.length != 0) {
-  //     setError([]);
-  //   }
-  // });
 
   return (
     <>
@@ -127,7 +127,7 @@ function AskquestionPage({ model, showQuestion, addQuestion }) {
         {error.length > 0 ? (
           <div className="error-ask" id="error-ask">
             {error.map((single, key) => {
-              <p key={key}>{single}</p>;
+              return <p key={key}>{single}</p>;
             })}
           </div>
         ) : null}

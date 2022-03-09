@@ -30,7 +30,7 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
           </a>
           <div className="question-tags">
             {tags.map((tag, key) => {
-              const tagIndex = parseInt(tag.slice(-1)) - 1;
+              const tagIndex = parseInt(tag.slice(1)) - 1;
               const tagName = tagLst[tagIndex].name;
               return (
                 <div className="tag-child" key={key}>

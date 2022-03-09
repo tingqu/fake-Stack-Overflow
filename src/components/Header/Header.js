@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./header.css";
 
 function Header({ model, showQuestion, showTags, Qflag, Tflag, select }) {
-  const [Question_flag, setQuestion_flag] = useState(false);
+  const [Question_flag, setQuestion_flag] = useState(true);
   const [Tag_flag, set_Tag_flag] = useState(false);
   // const question_lst = model.getQuestions();
   return (
@@ -46,6 +46,8 @@ function Header({ model, showQuestion, showTags, Qflag, Tflag, select }) {
                   const searchInput = event.target.value.split(" ");
                   var tagList = [];
                   event.target.value = "";
+
+                  // check if there is tag inside
                   for (var i = 0; i < searchInput.length; i++) {
                     if (
                       searchInput[i].includes("[") &&

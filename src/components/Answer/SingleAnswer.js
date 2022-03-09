@@ -9,7 +9,7 @@ function SingleAnswer({ singleAns, modelAnsLst }) {
       <div className="answer-info">
         <div>
           <li className="c3-item user-name-box">
-            Ans{" "}
+            Ans By{" "}
             <span className="user-name" id="user-name">
               {ansInfo.ansBy}
             </span>

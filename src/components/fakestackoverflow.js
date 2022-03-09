@@ -13,7 +13,7 @@ export default class FakeStackOverflow extends React.Component {
     super();
     this.state = {
       AskPageFlag: false,
-      showQuestionPage: false,
+      showQuestionPage: true,
       showTagPage: false,
       model: new Model(),
       showAns: false,
@@ -29,7 +29,6 @@ export default class FakeStackOverflow extends React.Component {
       AskPageFlag: false,
       showQuestionPage: false,
       showTagPage: false,
-      model: new Model(),
       showAns: false,
       ansTitle: "",
       showAddAns: false,
@@ -62,9 +61,11 @@ export default class FakeStackOverflow extends React.Component {
 
   //show answer page
   showAnswers = () => {
+    const title = this.state.ansTitle;
     this.setEverything();
     this.setState({
       showAns: true,
+      ansTitle: title,
     });
   };
 
@@ -74,29 +75,15 @@ export default class FakeStackOverflow extends React.Component {
       ansTitle: Qtitle,
     });
   };
+
   //show the ans answer
   showAddAnsPage = () => {
+    const title = this.state.ansTitle;
+    this.setEverything();
     this.setState({
-      AskPageFlag: false,
-      showQuestionPage: false,
-      showTagPage: false,
-      model: new Model(),
-      showAns: false,
-      ansTitle: "",
       showAddAns: true,
+      ansTitle: title,
     });
-  };
-
-  addQuestion = (newQ) => {
-    let newModel = this.state.model;
-    newModel.addQuestions(newQ);
-    console.log(newModel.getQuestions());
-    this.setState({
-      model: newModel,
-    });
-
-    console.log("model below: ");
-    console.log(this.state.model.getQuestions());
   };
 
   // get the selected question
@@ -110,9 +97,6 @@ export default class FakeStackOverflow extends React.Component {
   };
 
   render() {
-    // the new model
-    // const model = new Model();
-    // The state that control the appearance of each page
     return (
       <>
         <Header
@@ -154,7 +138,6 @@ export default class FakeStackOverflow extends React.Component {
           <AskQuestionPage
             model={this.state.model}
             showQuestion={this.showQuestion}
-            addQuestion={this.addQuestion}
           />
         ) : null}
 
@@ -169,10 +152,16 @@ export default class FakeStackOverflow extends React.Component {
         ) : null}
 
         {/* show the add answer page */}
-        {this.state.showAddAns ? <AddAnswer /> : null}
+        {this.state.showAddAns ? (
+          <AddAnswer
+            model={this.state.model}
+            title={this.state.ansTitle}
+            showAnsPage={this.showAnswers}
+          />
+        ) : null}
 
-        {console.log("testing the ask quesiton page")}
-        {console.log(this.state.model.getQuestions())}
+        {/* {console.log("testing the ask quesiton page")}
+        {console.log(this.state.model.getTags())} */}
       </>
     );
   }

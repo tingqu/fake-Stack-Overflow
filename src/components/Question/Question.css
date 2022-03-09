@@ -1,8 +1,12 @@
-.search-not-found{
-    height: 40%;
-    width: 100%;
-    text-align: center;
-    font-size: 300%;
-    font-weight: bolder;
-    margin-top: 15%;
-  }
+.search-not-found {
+  height: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 300%;
+  font-weight: bolder;
+  margin-top: 15%;
+}
+
+.question-page {
+  overflow-x: scroll;
+}

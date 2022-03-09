@@ -44,7 +44,6 @@ export default class Model {
           name: "shared-preferences",
         },
       ],
-
       answers: [
         {
           aid: "a1",
@@ -104,21 +103,6 @@ export default class Model {
     const len = this.data.questions.length + 1;
     const Qid = "q" + len.toString();
     questionObject["qid"] = Qid;
-    console.log("Question Added");
-    // var on = questionObject.askedOn;
-    // var at = questionObject.askedAt;
-    // for (var i = 0; i < len - 1; i++) {
-    //   let date = this.data.questions[i].askedOn;
-    //   if (date > on) {
-    //     this.data.questions.splice(i, 0, questionObject);
-    //     break;
-    //   } else if (date == on) {
-    //     let atTime = this.data.questions[i].askedAt;
-    //     if (atTime > at) {
-    //       this.data.questions.splice(i, 0, questionObject);
-    //     }
-    //   }
-    // }
     this.data.questions.unshift(questionObject);
   }
 
@@ -136,19 +120,17 @@ export default class Model {
   }
 
   addAnswers(ans) {
-    const len = this.data.answers.length + 1;
-    const Aid = "a" + len.toString();
-    ans["aid"] = Aid;
     this.data.answers.push(ans);
   }
 
   tagExist(tag) {
     for (var i = 0; i < this.data.tags.length; i++) {
+      console.log(this.data.tags[i].name);
       if (this.data.tags[i].name.toUpperCase() == tag.toUpperCase()) {
         return this.data.tags[i].tid;
       }
-      return " ";
     }
+    return " ";
   }
 
   tagsLength() {
@@ -170,6 +152,10 @@ export default class Model {
 
   appendAnswer(index, ansID) {
     var changed = this.data.questions[index];
+    this.sort(
+      this.data.questions[index].answers,
+      this.data.questions[index].answers.length
+    );
     var newAns = this.data.answers[ansID];
     changed.answers.unshift(newAns.aid);
   }

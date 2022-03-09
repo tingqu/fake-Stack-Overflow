@@ -27,30 +27,46 @@ function TagPage({ model, onChange, select }) {
     return tagsQuestionDict;
   };
 
+  const singletTagLst = () => {
+    const tagsDict = getTagQuestions();
+    const Lst = [];
+    for (var i = 0; i < tagLst.length; i++) {
+      const info = {
+        name: tagLst[i].name,
+        number: tagsDict[tagLst[i].tid].length,
+        question: tagsDict[tagLst[i].tid],
+      };
+      Lst.push(<SingleTag info={info} select={select} key={i} />);
+    }
+
+    const sperated = [];
+    let j = Lst.length / 3;
+    let z = 0;
+    while (z < j) {
+      sperated.push(
+        <div className="sub-tag-box" key={z}>
+          {Lst.slice(z * 3, z * 3 + 3)}
+        </div>
+      );
+      z += 1;
+    }
+
+    const rest = j * 3;
+    sperated.push(<div className="sub-tag-box">{Lst[rest]}</div>);
+    return sperated;
+  };
+
+  const seperatedLst = singletTagLst();
+
+  console.log(seperatedLst);
   return (
     <>
       <Nav title={title} number={number} onChange={onChange} />
       <div className="tags-page" id="tags_page">
         <div className="tag-box" id="tag_box">
-          <div className="sub-tag-box">
-            {tagLst.map((tag, key) => {
-              const tagsDict = getTagQuestions();
-              const info = {
-                name: tag.name,
-                number: tagsDict[tag.tid].length,
-                question: tagsDict[tag.tid],
-              };
-
-              return (
-                <SingleTag
-                  className="tags"
-                  info={info}
-                  key={key}
-                  select={select}
-                />
-              );
-            })}
-          </div>
+          {seperatedLst.map((item, key) => {
+            return <div key={key}>{item}</div>;
+          })}
         </div>
       </div>
     </>

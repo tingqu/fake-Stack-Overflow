@@ -7,9 +7,11 @@ function Answer({ model, Qtitle, onChange, showAddAnsPage }) {
   // find the index question
   const QLst = model.getQuestions();
   const modelAnsLst = model.getAnswers();
+  console.log(modelAnsLst);
   var answerLst = [];
   var index = 0;
 
+  console.log(Qtitle);
   // get the index of question
   for (var i = 0; i < QLst.length; i++) {
     if (QLst[i].title == Qtitle) {
@@ -18,6 +20,8 @@ function Answer({ model, Qtitle, onChange, showAddAnsPage }) {
       break;
     }
   }
+
+  console.log(index);
 
   var len = answerLst.length;
   // set up the nav
