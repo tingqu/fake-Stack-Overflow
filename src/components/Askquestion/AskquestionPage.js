@@ -44,10 +44,11 @@ function AskquestionPage({ model, showQuestion }) {
     const tags = event.target.ask_tags.value;
     const userName = event.target.ask_username.value;
 
-    if (title.trim().length > 100) {
+    const newTitle = title.trim().replace(" ", "").split("")
+    if (newTitle.length > 100) {
       setError((error) => [...error, error_message[0]]);
       flag = true;
-    } else if (title.trim().length === 0) {
+    } else if (newTitle.length === 0) {
       flag = true;
       setError((error) => [...error, error_message[1]]);
     }
@@ -83,11 +84,13 @@ function AskquestionPage({ model, showQuestion }) {
       questionTagsList = new Set(questionTagsList);
       questionTagsList = Array.from(questionTagsList);
     }
+
+    const newUserName = userName.trim().replace(" ", "").split("")
     // Error in userName
-    if (userName.length > 15) {
+    if (newUserName.length > 15) {
       flag = true;
       setError((error) => [...error, error_message[3]]);
-    } else if (userName.trim().length === 0) {
+    } else if (newUserName.length === 0) {
       flag = true;
       setError((error) => [...error, error_message[4]]);
     }

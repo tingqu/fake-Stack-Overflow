@@ -16,7 +16,7 @@ function Question({
 
   // Set the correct nav content
   if (selectNum == 0) {
-    title = " All Question ";
+    title = " All Questions";
   } else if (selectNum == 1) {
     title = "Question tagged [" + question_lst[1] + "]";
     question_lst = question_lst[0];
