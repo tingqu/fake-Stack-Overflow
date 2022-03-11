@@ -6,8 +6,32 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
   const tags = singleQ.tagIds;
   const ans = singleQ.answers.length > 1 ? "Answers " : "Answer";
   const views = singleQ.views > 1 ? "Views" : "View";
-  console.log(tags);
   const emptyTag = tags.length == 0 ? true : false;
+
+  const singleTagLst = ()=>{
+    const Lst = []
+    for(let i = 0; i < tags.length; i++){
+      const index = parseInt(tags[i].slice(1)) - 1
+      console.log(index)
+      const Tagname = tagLst[index].name
+      Lst.push(<div className="tag-child">{Tagname}</div>)
+    }
+
+    const divided = [];
+    let j = Lst.length/4;
+    let z = 0
+    while(z < j){
+      divided.push(<div>{Lst.slice(z*4, z*4 + 4)}</div>)
+      z+= 1
+    }
+
+    const rest = j * 4 
+    divided.push(<div>{Lst[rest]}</div>)
+    return divided
+  }
+
+  const divided = singleTagLst()
+
   return (
     <div className="question-list">
       <div className="c1">
@@ -32,16 +56,13 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
           </a>
           <div className="question-tags">
             {emptyTag
-              ? null
-              : tags.map((tag, key) => {
-                  const tagIndex = parseInt(tag.slice(1)) - 1;
-                  const tagName = tagLst[tagIndex].name;
-                  return (
-                    <div className="tag-child" key={key}>
-                      {tagName}
-                    </div>
-                  );
-                })}
+              ? null:
+              // : 
+              divided.map((item)=>{
+                return item
+              })
+            
+            }
           </div>
         </span>
       </div>
