@@ -44,7 +44,7 @@ function AskquestionPage({ model, showQuestion }) {
     const tags = event.target.ask_tags.value;
     const userName = event.target.ask_username.value;
 
-    const newTitle = title.trim().replace(" ", "").split("")
+    const newTitle = title.trim().replace(" ", "").split("");
     if (newTitle.length > 100) {
       setError((error) => [...error, error_message[0]]);
       flag = true;
@@ -65,7 +65,10 @@ function AskquestionPage({ model, showQuestion }) {
       questionTagsList = [];
     } else {
       let questionTags = tags.trim().split(" ");
-      for (var i = 0; i < questionTags.length; i++) {
+      for (let i = 0; i < questionTags.length; i++) {
+        if (questionTags[i].trim().length == 0) {
+          continue;
+        }
         const testing = model.tagExist(questionTags[i]);
         if (testing == " ") {
           const newTag = {
@@ -85,7 +88,7 @@ function AskquestionPage({ model, showQuestion }) {
       questionTagsList = Array.from(questionTagsList);
     }
 
-    const newUserName = userName.trim().replace(" ", "").split("")
+    const newUserName = userName.trim().replace(" ", "").split("");
     // Error in userName
     if (newUserName.length > 15) {
       flag = true;
