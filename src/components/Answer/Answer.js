@@ -70,15 +70,17 @@ function Answer({ model, Qtitle, onChange, showAddAnsPage }) {
       </div>
 
       {/* Single answer */}
-      {answerLst.map((singleAns, key) => {
-        return (
-          <SingleAnswer
-            singleAns={singleAns}
-            key={key}
-            modelAnsLst={modelAnsLst}
-          />
-        );
-      })}
+      <div className="ans-section">
+        {answerLst.map((singleAns, key) => {
+          return (
+            <SingleAnswer
+              singleAns={singleAns}
+              key={key}
+              modelAnsLst={modelAnsLst}
+            />
+          );
+        })}
+      </div>
 
       {/* Add Answer Button */}
       <div className="Answer-question" id="Answer_question">

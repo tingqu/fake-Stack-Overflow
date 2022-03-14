@@ -12,7 +12,6 @@ function SingleQ({ singleQ, model, showAnswers, getAnsTitle }) {
     const Lst = []
     for(let i = 0; i < tags.length; i++){
       const index = parseInt(tags[i].slice(1)) - 1
-      console.log(index)
       const Tagname = tagLst[index].name
       Lst.push(<div className="tag-child">{Tagname}</div>)
     }

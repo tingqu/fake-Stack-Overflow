@@ -43,20 +43,51 @@ function Header({ model, showQuestion, showTags, Qflag, Tflag, select }) {
               placeholder="Search ..."
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
-                  const searchInput = event.target.value.split(" ");
-                  var tagList = [];
+                  let str = event.target.value;
+
                   event.target.value = "";
 
-                  // check if there is tag inside
-                  for (var i = 0; i < searchInput.length; i++) {
-                    if (
-                      searchInput[i].includes("[") &&
-                      searchInput[i].includes("]")
-                    ) {
-                      tagList.push(
-                        searchInput[i].substring(1, searchInput[i].length - 1)
-                      );
-                      searchInput.splice(i, 1);
+                  let tagList = [];
+
+                  // separate tags and string
+
+                  let front = 0;
+                  let back = 0;
+                  let arr = [];
+                  let index = 0;
+                  while (index < str.length) {
+                    front = str.indexOf("[", index);
+                    back = str.indexOf("]", index);
+                    if (front != -1 && back != -1) {
+                      arr.push(str.slice(front, back + 1));
+                      index = back;
+                    }
+                    index += 1;
+                  }
+
+                  index = 0;
+                  let index2 = 0;
+                  let strArr = "";
+                  while (index < arr.length) {
+                    front = str.indexOf(arr[index]);
+                    strArr += str.slice(index2, front) + " ";
+                    index2 = front + arr[index].length;
+                    index++;
+                  }
+                  strArr += str.slice(index2);
+
+                  console.log("arr: ", arr);
+                  console.log("strArr ", strArr);
+
+                  for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].length == 2) {
+                      continue;
+                    } else {
+                      var value = arr[i].substring(1, arr[i].length - 1).trim();
+                      if (value.length == 0) {
+                        continue;
+                      }
+                      tagList.push(value);
                     }
                   }
                   var questionList = model.getQuestions();
@@ -64,8 +95,27 @@ function Header({ model, showQuestion, showTags, Qflag, Tflag, select }) {
 
                   var resultQuestion = [];
                   var resultTag = [];
-                  for (var i = 0; i < searchInput.length; i++) {
-                    const singleSearch = searchInput[i].toLowerCase();
+
+                  strArr = strArr.split(" ");
+
+                  console.log("strArr ", strArr);
+                  for (let k = 0; k < strArr.length; k++) {
+                    if (strArr[k].trim().length == 0) {
+                      continue;
+                    }
+
+                    if (
+                      strArr[k].trim() == "is" ||
+                      strArr[k].trim() == "the" ||
+                      strArr[k].trim() == "what" ||
+                      strArr[k].trim() == "how" ||
+                      strArr[k].trim() == "why" ||
+                      strArr[k].trim() == "when" ||
+                      strArr[k].trim() == "a"
+                    ) {
+                      continue;
+                    }
+                    const singleSearch = strArr[k].trim().toLowerCase();
                     for (var j = 0; j < questionList.length; j++) {
                       const ttl = questionList[j].title.toLowerCase();
                       const txt = questionList[j].text.toLowerCase();

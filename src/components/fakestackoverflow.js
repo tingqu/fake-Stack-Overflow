@@ -147,7 +147,7 @@ export default class FakeStackOverflow extends React.Component {
             model={this.state.model}
             Qtitle={this.state.ansTitle}
             onChange={this.showAskPage}
-            showAddAnsPage={this.showAddAnsPage}
+            showAddAnsPage={this.showAddAnsPage} 
           />
         ) : null}
 

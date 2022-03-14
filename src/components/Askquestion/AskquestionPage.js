@@ -77,8 +77,6 @@ function AskquestionPage({ model, showQuestion }) {
           };
 
           model.addTags(newTag);
-          console.log(newTag);
-          console.log(model.getTags());
           questionTagsList.push(newTag.tid);
         } else {
           questionTagsList.push(model.tagExist(questionTags[i]));
@@ -118,7 +116,6 @@ function AskquestionPage({ model, showQuestion }) {
       setError([]);
     }
     getValue(event);
-    console.log(question);
     if (!flag) {
       model.addQuestions(question);
       showQuestion();

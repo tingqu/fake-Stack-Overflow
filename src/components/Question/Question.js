@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SingleQ from "./SingleQ";
 import Nav from "../Nav/Nav.js";
 import "./Question.css";
