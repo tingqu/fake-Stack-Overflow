@@ -77,9 +77,7 @@ function Addanswer({ model, title, showAnsPage }) {
     }
     onChange(event);
     if (!flag) {
-      console.log(answer);
       model.addAnswers(answer);
-      console.log(len - 1);
       model.appendAnswer(index, len - 1);
       showAnsPage();
     }

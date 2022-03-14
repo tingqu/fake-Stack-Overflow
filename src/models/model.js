@@ -151,6 +151,7 @@ export default class Model {
 
   appendAnswer(index, ansID) {
     var changed = this.data.questions[index];
+    this.data.questions[index].views = this.data.questions[index].views - 1;
     this.sort(
       this.data.questions[index].answers,
       this.data.questions[index].answers.length
